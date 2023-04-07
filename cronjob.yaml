@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: troubleshoot-pod
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: troubleshoot-pod
+            image: your-docker-image:latest
+            command: ["python", "troubleshoot_pod.py"]
+          restartPolicy: OnFailure
